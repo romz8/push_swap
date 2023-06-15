@@ -23,12 +23,12 @@ typedef struct s_list {
 }   t_list;
 
 
-void    create_stack(int argc, char *argv);
+void    create_stack(int argc, char *argv, t_list **stack);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
 void    pa(t_list **stack_a, t_list **stack_b);
 void    pb(t_list **stack_b, t_list **stack_a);
 void    swap(t_list **stack);
-void    rotate(**t_list stack);
+void    rotate(t_list **stack);
 
 #endif

@@ -64,8 +64,8 @@ nodes:
 3 - make head of list the second node */
 void    swap(t_list **stack)
 {
-    *t_list temp;
-    *t_list head;
+    t_list *temp;
+    t_list *head;
 
     if (!*stack || !(*stack)->next)
         return;
@@ -83,7 +83,7 @@ void    swap(t_list **stack)
 1 - keep in the front node in temp
 2 - make the second node new head
 3 - go to last node and make it point to former front */
-void    rotate(**t_list stack)
+void    rotate(t_list **stack)
 {
     t_list *tmp;
     t_list *head;
