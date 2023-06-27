@@ -15,20 +15,34 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "./libft_printf/ft_printf.h"
+# include "./libft_printf/libft/libft.h"
 
-typedef struct s_list {
+typedef struct s_stack {
     int     data;
-    struct s_list *next;
+    struct s_stack *next;
+    struct s_stack *prev; 
 }   t_list;
 
 
-void    create_stack(int argc, char *argv, t_list **stack);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-t_list	*ft_lstnew(void *content);
+void    create_stack(int argc, char **argv, t_list **stack);
+void	ft_stack_add_front(t_list **stack, t_list *new);
+t_list	*ft_stack_new(int content);
+void    push(t_list **stack_a, t_list **stack_b);
 void    pa(t_list **stack_a, t_list **stack_b);
 void    pb(t_list **stack_b, t_list **stack_a);
 void    swap(t_list **stack);
 void    rotate(t_list **stack);
+void    print_stacks(t_list **a, t_list **b);
+void    print_reverse_stacks(t_list **a, t_list **b);
+void    ra(t_list **a);
+void    rb(t_list **b);
+void    rr(t_list **a, t_list **b);
+void    sa(t_list **a);
+void    sb(t_list **b);
+void    ss(t_list **a, t_list **b);
+void    rra(t_list **a);
+void    rrb(t_list **b);
+void    rrr(t_list **a, t_list **b);
 
 #endif
