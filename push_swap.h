@@ -34,6 +34,7 @@ void    pb(t_list **stack_b, t_list **stack_a);
 void    swap(t_list **stack);
 void    rotate(t_list **stack);
 void    print_stacks(t_list **a, t_list **b);
+void    print_stacks_check_nodes(t_list **a, t_list **b);
 void    print_reverse_stacks(t_list **a, t_list **b);
 void    ra(t_list **a);
 void    rb(t_list **b);
@@ -44,5 +45,9 @@ void    ss(t_list **a, t_list **b);
 void    rra(t_list **a);
 void    rrb(t_list **b);
 void    rrr(t_list **a, t_list **b);
+void    sort_3_ints(t_list **stack);
+int     stack_len(t_list **stack);
+int     find_stack_max(t_list **stack);
+
 
 #endif

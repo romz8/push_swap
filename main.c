@@ -39,6 +39,6 @@ int main(int argc, char *argv[])
     pa(&a, &b);
     print_stacks(&a, &b);
     ft_printf("\n");
-    //print_reverse_stacks(&a, &b);
+    print_reverse_stacks(&a, &b);
     ft_printf("\n");
 }

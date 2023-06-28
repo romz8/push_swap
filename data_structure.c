@@ -65,23 +65,30 @@ void	ft_stack_add_front(t_list **stack, t_list *new)
 if b is not empty, we create a node which content is
 equal to content of front node of linked list a
 2 - it will be front node on b  */
-void    push(t_list **stack_a, t_list **stack_b)
+void    push(t_list **target, t_list **source)
 {
     t_list *node;
     t_list *tmp;
 
-    if (!*stack_b)
+    if (!*source)
         return ;
-    node = ft_stack_new((*stack_b)->data);
-    if (!*stack_a)
-        *stack_a = node;
+    node = ft_stack_new((*source)->data);
+    if (!*target)
+        *target = node;
     else    
-        ft_stack_add_front(stack_a, node);
-    tmp = ((*stack_b)->next);
-    free(*stack_b);
-    *stack_b = tmp;
-    (*stack_b)->prev = NULL;
-
+        ft_stack_add_front(target, node);
+    if ((*source)->next)
+    {   
+        tmp = ((*source)->next);
+        free(*source);
+        *source = tmp;
+        (*source)->prev = NULL;
+    }
+    else
+    {
+        free(*source);
+        *source = NULL;
+    }
     return ;
 }
 void    pa(t_list **stack_a, t_list **stack_b)
@@ -149,7 +156,7 @@ void    rotate(t_list **stack)
     t_list *head;
     t_list *save;
 
-    if (!*stack)
+    if (!*stack || !(*stack)->next)
         return ;
     head = *stack;
     tmp = head;
@@ -194,7 +201,7 @@ void    reverse_rotate(t_list **stack)
     t_list  *temp;
     t_list  *save;
 
-    if (!*stack)
+    if (!*stack || !(*stack)->next)
         return ;
     head = *stack;
     save = *stack;
@@ -202,6 +209,7 @@ void    reverse_rotate(t_list **stack)
         head = head->next;
     temp = head->next;
     temp->next = save;
+    save->prev = temp;
     head->next = NULL;
     temp->prev = NULL;
     head = temp;
@@ -228,6 +236,35 @@ void    rrr(t_list **a, t_list **b)
 }
 
 void print_stacks(t_list **a, t_list **b)
+{
+    t_list *head_a;
+    t_list *head_b;
+
+    if (!a && !b)
+        return;
+    head_a = *a;
+    head_b = *b;
+    while (head_a || head_b)
+    {
+        if (head_a)
+        {
+            ft_printf("%i", head_a->data); 
+            head_a = head_a->next;
+        }
+        ft_printf("\t");
+        if (head_b)
+        {
+            ft_printf("%i", head_b->data);
+            head_b = head_b->next;
+        }
+        ft_printf("\n");
+    }
+    ft_printf("-\t-\n");
+    ft_printf("a\tb\n");
+    ft_printf("\n=======================================================\n");
+}
+
+void print_stacks_check_nodes(t_list **a, t_list **b)
 {
     t_list *head_a;
     t_list *head_b;
@@ -268,21 +305,38 @@ void print_reverse_stacks(t_list **a, t_list **b)
     ft_printf("check printing reverse \n");
     head_a = *a;
     head_b = *b;
-    while (head_a->next)
-        head_a = head_a->next;
-    while(head_b->next)
-        head_b = head_b->next;
+    while (head_a)
+    {
+        if (head_a->next)
+            head_a = head_a->next;
+        else
+            break ;
+    }   
+    while(head_b)
+    {
+        if (head_b->next)
+            head_b = head_b->next;
+        else
+            break ;
+    }
     while (head_a || head_b)
     {
         if (head_a)
         {
+            
             ft_printf("%i   ", head_a->data); 
-            head_a = head_a->prev;
+            if (head_a->prev)
+                head_a = head_a->prev;
+            else 
+                break;
         }
         if (head_b)
         {
             ft_printf("%i", head_b->data);
-            head_b = head_b->prev;
+            if (head_a->prev)
+                head_b = head_b->prev;
+            else 
+                break;
         }
         ft_printf("\n");
     }
