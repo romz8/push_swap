@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
     create_stack(argc, argv, &a);
      ft_printf("Init stacks\n");
     print_stacks(&a, &b);
-    sort_3_ints(&a);
+    //sort_3_ints(&a);
+    sort_5_ints(&a, &b);
     print_stacks(&a, &b);
+    print_target(&b);
 }

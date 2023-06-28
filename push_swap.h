@@ -20,6 +20,7 @@
 
 typedef struct s_stack {
     int     data;
+    int     target;
     struct s_stack *next;
     struct s_stack *prev; 
 }   t_list;
@@ -46,8 +47,12 @@ void    rra(t_list **a);
 void    rrb(t_list **b);
 void    rrr(t_list **a, t_list **b);
 void    sort_3_ints(t_list **stack);
+void    sort_5_ints(t_list **stack_a, t_list **stack_b);
 int     stack_len(t_list **stack);
 int     find_stack_max(t_list **stack);
+int     find_stack_min(t_list **stack);
+int     find_target (t_list **stack, int node_val);
 
+void    print_target(t_list **stack);
 
 #endif
