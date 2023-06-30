@@ -39,7 +39,6 @@ to be on top of its target -> execute that move
 void    sort_5max_ints(t_list **stack_a, t_list **stack_b)
 {
 
-    if (!*stack_a || stack_len(stack_a) != 5)
     if (!*stack_a || stack_len(stack_a) > 5)
         return ;
     while(stack_len(stack_a) != 3)
