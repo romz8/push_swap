@@ -1,4 +1,3 @@
-
 #include "push_swap.h"
 int main(int argc, char *argv[])
 {
@@ -10,12 +9,9 @@ int main(int argc, char *argv[])
      ft_printf("Init stacks\n");
     print_stacks(&a, &b);
     //sort_3_ints(&a);
-    sort_5max_ints(&a, &b);
+    push_swap(&a, &b);
     print_stacks(&a, &b);
-<<<<<<< HEAD
     print_target(&b);
-=======
->>>>>>> 6acf8edd73ed4113d351b10f9fa516abfa540d0e
     //print_target(&b);
     //ft_printf("\n\n Now printing the stack a \n\n");
     //print_target(&a);

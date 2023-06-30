@@ -65,7 +65,7 @@ void    move_distance(t_list **stack_a, t_list **stack_b);
 void    find_target_rank(t_list **stack, int target, int *data);
 void    rank_node_order(t_list **stack);
 void    evaluate_node(t_list **stack_a, t_list **stack_b);
-int    calculate_nb_move(t_list *head, t_list **stack_a, t_list **stack_b, int *data);
+int     calculate_nb_move(t_list *head, t_list **stack_a, t_list **stack_b, int *data);
 void    key_nodes(t_list **stack_a, t_list **stack_b, t_list **move_node, t_list **target_node);
 void    rolling_engine(t_list **stack_a, t_list **stack_b);
 void    reverse_rotate_loop(t_list **stack_a, t_list **stack_b, t_list **target, t_list **node);
@@ -75,6 +75,7 @@ void    diagonale_rotate_down(t_list **stack_a, t_list **stack_b, t_list **targe
 void    rearrange_stack(t_list **stack);
 void    reorder_down(t_list **stack, t_list **node);
 void    reorder_up(t_list **stack, t_list **node);
+void    push_swap(t_list **stack_a, t_list **stack_b);
 
 
 void    print_target(t_list **stack);
