@@ -11,7 +11,9 @@ int main(int argc, char *argv[])
      ft_printf("Init stacks\n");
     print_stacks(&a, &b);
     //sort_3_ints(&a);
-    sort_5_ints(&a, &b);
+    sort_5max_ints(&a, &b);
     print_stacks(&a, &b);
-    print_target(&b);
+    //print_target(&b);
+    //ft_printf("\n\n Now printing the stack a \n\n");
+    //print_target(&a);
 }
