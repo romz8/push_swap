@@ -20,7 +20,7 @@
 if top node is bigger than mid node : swap */
 void    sort_3_ints(t_list **stack)
 {
-    if (!*stack || !(*stack)->next->next || stack_len(stack) != 3)
+    if (!*stack || !(*stack)->next->next || stack_len(stack) > 3)
         return ;
     if((*stack)->data == find_stack_max(stack))
         ra(stack);
@@ -41,7 +41,7 @@ void    sort_5max_ints(t_list **stack_a, t_list **stack_b)
 
     if (!*stack_a || stack_len(stack_a) > 5)
         return ;
-    while(stack_len(stack_a) != 3)
+    while(stack_len(stack_a) > 3)
         pb(stack_a, stack_b);
     sort_3_ints(stack_a);
     while(*stack_b)

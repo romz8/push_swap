@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
         ft_printf("Error\n");
         return (-1);
     }
+    ft_printf("\n LENGTH OF ARRAY IS: %i\n", len);
     len = create_stack(len, clean_input, &a);
     if (len < 0)
     {
