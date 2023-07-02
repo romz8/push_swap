@@ -9,9 +9,11 @@
 /*   Updated: 2023/06/15 17:32:52 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <stdlib.h>
+# include <limits.h>
 # include "./libft_printf/ft_printf.h"
 # include "./libft_printf/libft/libft.h"
 typedef struct s_stack {
@@ -35,9 +37,14 @@ move_distance needs swap & rotate OR reverse rotate)
 */
 
 
-void    create_stack(int argc, char **argv, t_list **stack);
+int     create_stack(int argc, int *argv, t_list **stack);
+int     char_to_nb_array(char **input, int **nb_input);
+int     parse_input(int argc, char *argv[], int **clean_input);
+int     check_duplicates(int **clean_input);
+int     ft_atoi_custom(const char *str, int *flag);
 void	ft_stack_add_front(t_list **stack, t_list *new);
 t_list	*ft_stack_new(int content);
+void    free_stack(t_list **stack);
 void    push(t_list **stack_a, t_list **stack_b);
 void    pa(t_list **stack_a, t_list **stack_b);
 void    pb(t_list **stack_b, t_list **stack_a);

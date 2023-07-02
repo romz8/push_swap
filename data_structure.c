@@ -12,19 +12,17 @@
 
 #include "push_swap.h"
 
-void    create_stack(int argc, char **argv, t_list **stack)
+int create_stack(int len, int *input, t_list **stack)
 {
     int i;
-    int n;
     t_list *node;
     
-    i = argc - 1;
-    while (i > 0)
+    i = 0;
+    while (i < len)
     {
-        n = ft_atoi(argv[i]);
-        node = ft_stack_new(n);
+        node = ft_stack_new(input[i]);
         if (!node)
-            return ;
+            return (-1);
         if (!*stack)
             *stack = node;
         else    
@@ -33,9 +31,9 @@ void    create_stack(int argc, char **argv, t_list **stack)
             (*stack)->prev = node;  
             *stack = node;
         }
-        i--;
+        i++;
     }
-    return ;
+    return (1);
 }
 
 t_list	*ft_stack_new(int n)
@@ -58,4 +56,18 @@ void	ft_stack_add_front(t_list **stack, t_list *new)
     new->next = *stack;
     (*stack)->prev = new;
     *stack = new;
+}
+
+void    free_stack(t_list **stack)
+{
+    t_list  *temp;
+
+    if (!*stack)
+        return;
+    while (*stack)
+    {
+        temp = (*stack)->next;
+        free(*stack);
+        *stack = temp;
+    }
 }
