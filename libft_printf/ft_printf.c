@@ -66,11 +66,9 @@ static int	ft_iterate_measure(const char *s, va_list arg_list, int n)
 
 int	ft_printf(const char *s, ...)
 {
-	int		i;
 	int		n;
 	va_list	arg_list;
 
-	i = 0;
 	n = 0;
 	va_start(arg_list, s);
 	if (!s)

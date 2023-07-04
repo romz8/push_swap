@@ -41,18 +41,18 @@ void    rotate(t_list **stack)
 void    ra(t_list **a)
 {
     rotate(a);
-    ft_printf("Exec ra\n");
+    ft_putstr("ra\n");
 }
 
 void    rb(t_list **b)
 {
     rotate(b);
-    ft_printf("Exec rb\n");
+    ft_putstr("rb\n");
 }
 
 void    rr(t_list **a, t_list **b)
 {
     rotate(a);
     rotate(b);
-    ft_printf("Exec rr : ra rb\n");
+    ft_putstr("rr\n");
 }

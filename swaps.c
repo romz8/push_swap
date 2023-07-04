@@ -38,18 +38,18 @@ void    swap(t_list **stack)
 void    sa(t_list **a)
 {
     swap(a);
-    ft_printf("Exec sa\n");
+    ft_putstr("sa\n");
 }
 
 void    sb(t_list **b)
 {
     swap(b);
-    ft_printf("Exec sb\n");
+    ft_putstr("sb\n");
 }
 
 void    ss(t_list **a, t_list **b)
 {
     swap(a);
     swap(b);
-    ft_printf("Exec ss : sa sb\n");
+    ft_putstr("ss\n");
 }

@@ -17,8 +17,8 @@ int create_stack(int len, int *input, t_list **stack)
     int i;
     t_list *node;
     
-    i = 0;
-    while (i < len)
+    i = len - 1;
+    while (i >= 0)
     {
         node = ft_stack_new(input[i]);
         if (!node)
@@ -31,7 +31,7 @@ int create_stack(int len, int *input, t_list **stack)
             (*stack)->prev = node;  
             *stack = node;
         }
-        i++;
+        i--;
     }
     return (1);
 }

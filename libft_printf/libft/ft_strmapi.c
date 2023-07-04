@@ -15,10 +15,8 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int		i;
-	int		len;
 	char	*modif;
 
-	len = ft_strlen(s);
 	modif = ft_strdup(s);
 	if (!modif)
 		return (NULL);

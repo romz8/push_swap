@@ -9,6 +9,7 @@
 /*   Updated: 2023/06/28 15:05:20 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 /* sorting (ascending) 3 consecutive nodes in dble linked list
 1 - find the max among the 3 nodes and put it at the end :
@@ -46,9 +47,9 @@ void    sort_5max_ints(t_list **stack_a, t_list **stack_b)
     sort_3_ints(stack_a);
     while(*stack_b)
     {
-        print_stacks(stack_a, stack_b); //CAREFULL !!!
+        //print_stacks(stack_a, stack_b); //CAREFULL !!!
         evaluate_node(stack_a, stack_b);
-        print_target(stack_b); //CAREFULL !!!
+        //print_target(stack_b); //CAREFULL !!!
         rolling_engine(stack_a, stack_b);
         pa(stack_a, stack_b);
     }
@@ -64,9 +65,9 @@ void    push_swap(t_list **stack_a, t_list **stack_b)
     sort_5max_ints(stack_a, stack_b);
     while(*stack_b)
     {
-        print_stacks(stack_a, stack_b); //CAREFULL !!!
+        //print_stacks(stack_a, stack_b); //CAREFULL !!!
         evaluate_node(stack_a, stack_b);
-        print_target(stack_b); //CAREFULL !!!
+        //print_target(stack_b); //CAREFULL !!!
         rolling_engine(stack_a, stack_b);
         pa(stack_a, stack_b);
     }
