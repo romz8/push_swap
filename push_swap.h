@@ -14,6 +14,10 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 # include <limits.h>
+
+
+#include <stdio.h> // WARNINGGGGGGGG !!!!!!!!!!!!!
+
 # include "./libft_printf/ft_printf.h"
 # include "./libft_printf/libft/libft.h"
 typedef struct s_stack {
@@ -40,7 +44,7 @@ move_distance needs swap & rotate OR reverse rotate)
 int     create_stack(int argc, int *argv, t_list **stack);
 int     char_to_nb_array(char **input, int **nb_input, int *flag);
 int     parse_input(int argc, char *argv[], int **clean_input);
-void    check_duplicates(int **clean_input, int *flag);
+void check_duplicates(int **clean_input, int *flag, int size);
 int     ft_atoi_custom(const char *str, int *flag);
 void	ft_stack_add_front(t_list **stack, t_list *new);
 t_list	*ft_stack_new(int content);
@@ -83,7 +87,8 @@ void    rearrange_stack(t_list **stack);
 void    reorder_down(t_list **stack, t_list **node);
 void    reorder_up(t_list **stack, t_list **node);
 void    push_swap(t_list **stack_a, t_list **stack_b);
-
+void    parse_free(char **input);
+int     find_non_digit(char *str);
 
 void    print_target(t_list **stack);
 

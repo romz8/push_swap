@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 int main(int argc, char *argv[])
 {
     t_list *a;
@@ -9,16 +10,13 @@ int main(int argc, char *argv[])
     b = NULL;
     a = NULL;
     clean_input = NULL;
+
     len = parse_input(argc, argv, &clean_input);
     if (len == 0)
-    {
         return (0);
-        free(clean_input);
-    }
-    else if (len < 0)
+    if (len < 0)
     {
         write(2,"Error\n", 6);
-        free(clean_input);
         return (-1);
     }
     len = create_stack(len, clean_input, &a);
@@ -27,8 +25,8 @@ int main(int argc, char *argv[])
         free_stack(&a);
         return (-1);
     }
-    //ft_printf("Init stacks\n");
-    //print_stacks(&a, &b);
+    ft_printf("Init stacks\n");
+    print_stacks(&a, &b);
     //sort_3_ints(&a);
     push_swap(&a, &b);
     //print_stacks(&a, &b);
