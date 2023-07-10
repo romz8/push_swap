@@ -1,5 +1,5 @@
 #include "push_swap.h"
-#include <stdio.h>
+
 int main(int argc, char *argv[])
 {
     t_list *a;
@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
         free_stack(&a);
         return (-1);
     }
-    ft_printf("Init stacks\n");
-    print_stacks(&a, &b);
+    //ft_printf("Init stacks\n");
+    //print_stacks(&a, &b);
     //sort_3_ints(&a);
     push_swap(&a, &b);
     //print_stacks(&a, &b);

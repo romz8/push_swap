@@ -89,6 +89,7 @@ void    reorder_up(t_list **stack, t_list **node);
 void    push_swap(t_list **stack_a, t_list **stack_b);
 void    parse_free(char **input);
 int     find_non_digit(char *str);
+int     check_sort(t_list **stack);
 
 void    print_target(t_list **stack);
 

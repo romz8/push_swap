@@ -139,11 +139,12 @@ int	ft_atoi_custom(const char *str, int *flag)
 		if (!ft_isdigit(str[i]))
             return (*flag = -1); 
 		nbr = (str[i] - 48) + nbr * 10;
-        if (nbr > INT_MAX || nbr < INT_MIN)
-            return (*flag = -1);
 		i++;
 	}
-	return (sign * nbr);
+    nbr = sign * nbr;
+    if (nbr > INT_MAX || nbr < INT_MIN)
+            return (*flag = -1);
+	return (nbr);
 }
 
 void    parse_free(char **input)
@@ -163,8 +164,9 @@ void    parse_free(char **input)
 
 int find_non_digit(char *str)
 {
-    int i = 0;
+    int i;
 
+    i = 0;
     while (str[i])
     {
         if (!ft_isdigit(str[i]))

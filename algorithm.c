@@ -56,7 +56,7 @@ void    sort_5max_ints(t_list **stack_a, t_list **stack_b)
 
 void    push_swap(t_list **stack_a, t_list **stack_b)
 {
-    if (!*stack_a)
+    if (!*stack_a || check_sort(stack_a) == 0)
         return;
     while (stack_len(stack_a) > 5)
         pb(stack_a, stack_b);
@@ -68,4 +68,19 @@ void    push_swap(t_list **stack_a, t_list **stack_b)
         pa(stack_a, stack_b);
     }
     rearrange_stack(stack_a);
+}
+
+int check_sort(t_list **stack_head)
+{
+    t_list *stack;
+    stack = *stack_head;
+    if (!stack)
+        return (0);
+    while(stack && stack->next)
+    {
+        if (stack->data > stack->next->data)
+            return (1);
+        stack = stack->next;
+    }
+    return (0);
 }
