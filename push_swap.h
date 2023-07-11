@@ -26,6 +26,7 @@ typedef struct s_stack {
     int     rank;
     int     move_count;
     int     upper_half;
+    int     index;
     struct s_stack *next;
     struct s_stack *prev; 
 }   t_list;
@@ -41,7 +42,7 @@ move_distance needs swap & rotate OR reverse rotate)
 */
 
 
-int     create_stack(int argc, int *argv, t_list **stack);
+void    create_stack(int argc, int *argv, t_list **stack);
 int     char_to_nb_array(char **input, int **nb_input, int *flag);
 int     parse_input(int argc, char *argv[], int **clean_input);
 void check_duplicates(int **clean_input, int *flag, int size);
@@ -54,9 +55,6 @@ void    pa(t_list **stack_a, t_list **stack_b);
 void    pb(t_list **stack_b, t_list **stack_a);
 void    swap(t_list **stack);
 void    rotate(t_list **stack);
-void    print_stacks(t_list **a, t_list **b);
-void    print_stacks_check_nodes(t_list **a, t_list **b);
-void    print_reverse_stacks(t_list **a, t_list **b);
 void    ra(t_list **a);
 void    rb(t_list **b);
 void    rr(t_list **a, t_list **b);
@@ -90,7 +88,15 @@ void    push_swap(t_list **stack_a, t_list **stack_b);
 void    parse_free(char **input);
 int     find_non_digit(char *str);
 int     check_sort(t_list **stack);
+void    smart_pb(t_list **stack_a, t_list **stack_b);
+void    indexing_stack(t_list **stack);
+void    sort_array(int *arr, int size);
+void    assign_index(t_list **stack, int *arr, int size);
 
-void    print_target(t_list **stack);
+
+void    print_stacks_intel(t_list **a);
+void    print_stacks(t_list **a, t_list **b);
+void    print_stacks_check_nodes(t_list **a, t_list **b);
+void    print_reverse_stacks(t_list **a, t_list **b);
 
 #endif

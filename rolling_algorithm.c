@@ -15,7 +15,7 @@
 
 /*move to top of stack_b the node with less move needed to reach its target
 and move to top of stack_a this very target_node 
-1 - idetnitfy those nodes with key_nodes function
+1 - identify those nodes with key_nodes function
 2 - 4 cases :
 2.a - if both nodes and target are in the lower half of their stack, we push 
 them from the bottom : that's a reverse_rotate_loop -> see the function

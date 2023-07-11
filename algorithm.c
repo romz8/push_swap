@@ -58,16 +58,20 @@ void    push_swap(t_list **stack_a, t_list **stack_b)
 {
     if (!*stack_a || check_sort(stack_a) == 0)
         return;
-    while (stack_len(stack_a) > 5)
+    while (stack_len(stack_a) > 3)
         pb(stack_a, stack_b);
-    sort_5max_ints(stack_a, stack_b);
+    sort_3_ints(stack_a);
     while(*stack_b)
     {
         evaluate_node(stack_a, stack_b);
+        //print_stacks_intel(stack_b);
         rolling_engine(stack_a, stack_b);
         pa(stack_a, stack_b);
+        //print_stacks(stack_a, stack_b);
     }
-    rearrange_stack(stack_a);
+    //printf("\n\nRE_ARRANGE PHASE \n\n");
+    if (check_sort(stack_a) != 0)
+        rearrange_stack(stack_a);
 }
 
 int check_sort(t_list **stack_head)
@@ -83,4 +87,123 @@ int check_sort(t_list **stack_head)
         stack = stack->next;
     }
     return (0);
+}
+
+/* the push_swap algorithm works fine without this 
+function but can be optimized :
+before to have only 3 numbers on stack_a, we will do 
+smart push from a to b : 
+1 - if there is less than 2 nodeson b, no need to 
+rank, evaluate and push given a target node on stack_b for 
+a node on stack_a
+2 - if there is more than 2 nodes, we push from stack a to 
+stack b given the smallest number of move to optimize*/
+void    smart_pb(t_list **stack_a, t_list **stack_b)
+{
+    int push_count;
+    int stack_size;
+    int i;
+    
+    if (!*stack_a)
+        return ;
+    push_count = 0;
+    indexing_stack(stack_a);
+    print_stacks_intel(stack_a);
+    stack_size = stack_len(stack_a);
+    i = 0;
+    //printf("stack size is %i and stack_mid point is %i \n\n" , stack_size, stack_size / 2);
+    while (i < stack_size && push_count < (stack_size / 2))
+    {
+        //printf("stack %i component are : value %i, index %i\n\n", i, (*stack_a)->data, (*stack_a)->index);
+        if ((*stack_a)->index < (stack_size / 2))
+        {
+            pb(stack_a, stack_b);
+            push_count++;
+        }
+        else 
+            ra(stack_a);
+        i++;
+    }
+    while (stack_size - push_count > 3)
+    {
+        pb(stack_a, stack_b);
+        push_count++;
+    }
+    //printf("\n\n PRE_OPTIMIZATION FINISHED\n\n");
+    //print_stacks(stack_a, stack_b);
+}
+
+void   indexing_stack(t_list **stack)
+{
+    t_list *head;
+    int *stack_array;
+    int size;
+    int i;
+
+    if (!*stack)
+        return ;
+    size = stack_len(stack);
+    stack_array = malloc(size * sizeof(int));
+    if (!stack_array)
+        return ;
+    head = *stack;
+    i = 0;
+    while(head)
+    {
+        stack_array[i] = head->data;
+        i++;
+        head = head->next;
+    }
+    sort_array(stack_array, size);
+    assign_index(stack, stack_array, size);
+    free(stack_array);
+}
+
+/* a disgusting selection sort to know order node->data 
+in ascending order and index them in the stack data structure */
+void sort_array(int *arr, int size)
+{
+    int i;
+    int j;
+    int temp;
+    
+    i = 0;
+    while (i < size)
+    {
+        j = 0;
+        while (j < i)
+        {
+            if (arr[j] > arr[i])
+            {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i = 0;
+                j = 0;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+/* we traverse the array starting and look in the stack 
+for the correspinding, we allocate to the node->index the 
+array position*/
+void assign_index(t_list **stack, int *arr, int size)
+{
+    int i;
+    t_list *head;
+    
+    if (!*stack || !arr)
+        return;
+    i = 0;
+    while (i < size)
+    {
+        head = *stack;
+        while (head->data != arr[i])
+            head = head->next;
+        head->index = i;
+        i++;
+    }
 }

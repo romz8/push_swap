@@ -81,7 +81,7 @@ void    move_distance(t_list **stack_a, t_list **stack_b)
 }
 
 /* Objective : calculate how many moves are needed to have the node 
-on top of stack b and the target on top fo stack a :
+on top of stack b and the target on top of stack a :
 1 - if a node is in the upper half, to bring on top is a matter of how 
 many rotation you need to do until on top : it's position_rank is the distance
 2 - if a node is in the lower half, the further away from the mid point, 
@@ -94,12 +94,11 @@ target needs 2 rra on stack a and node needs one rrb on stack_b, the total
 is 3 : the first rra + rrb is done in one with rrr and then you do rra 
 so if (nb_rra) + (nb_rrb) is even : divide by 2 (as will only use rrr), if 
 it's odd : it's 0.5 * ((nb_rra) + (nb_rrb)) + 1 as you need one more rr 
-2 - same logic but with ra / rb if they are both inn upper halft
+2 - same logic but with ra / rb if they are both in upper half
 3 - if they are "in diagonal" -> add up, no move grouping for optimisation
 */
 int    calculate_nb_move(t_list *head, t_list **stack_a, t_list **stack_b, int *data)
 {
-
     int move;
 
     if (head->upper_half == 0 && data[1] == 0)

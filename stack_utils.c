@@ -66,6 +66,7 @@ int find_target(t_list **stack, int node_val)
     t_list *head;
     int flag;
     int target;
+    
     head = *stack;
     flag = 0;
     while (head)

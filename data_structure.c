@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	create_stack(int len, int *input, t_list **stack)
+void	create_stack(int len, int *input, t_list **stack)
 {
 	int		i;
 	t_list	*node;
@@ -22,7 +22,7 @@ int	create_stack(int len, int *input, t_list **stack)
 	{
 		node = ft_stack_new(input[i]);
 		if (!node)
-			return (-1);
+			return ;
 		if (!*stack)
 			*stack = node;
 		else
@@ -33,7 +33,7 @@ int	create_stack(int len, int *input, t_list **stack)
 		}
 		i--;
 	}
-	return (1);
+	return ;
 }
 
 t_list	*ft_stack_new(int n)

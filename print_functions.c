@@ -21,6 +21,7 @@ void print_stacks(t_list **a, t_list **b)
         return;
     head_a = *a;
     head_b = *b;
+    printf("\n\n STACK IS \n\n");
     while (head_a || head_b)
     {
         if (head_a)
@@ -133,4 +134,24 @@ void    print_target(t_list **stack)
         ft_printf("node_value : %i, node_target : %i, node_rank : %i, node_upper : %i, node_move_dist : %i \n", head->data, head->target, head->rank, head->upper_half, head->move_count);
         head = head->next;
     }
+}
+
+void print_stacks_intel(t_list **a)
+{
+    t_list *head_a;
+
+    if (!a)
+        return;
+    head_a = *a;
+    while (head_a)
+    {
+        if (head_a)
+        {
+            ft_printf("\n node value: %i, node rank : %i, node upper_half: %i, node target : %i, nb_count :%i\n", head_a->data, head_a->rank, head_a->upper_half, head_a->target, head_a->move_count);
+            head_a = head_a->next;
+        }
+        ft_printf("\n");
+    }
+    ft_printf("-\n");
+    ft_printf("\n=======================================================\n");
 }
