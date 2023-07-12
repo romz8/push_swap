@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:35:53 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/09 15:44:14 by rjobert          ###   ########.fr       */
+/*   Created: 2023/07/12 17:58:54 by rjobert           #+#    #+#             */
+/*   Updated: 2023/07/12 18:01:00 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	main(int argc, char *argv[])
 {
-	int		i;
+	t_list	*a;
+	t_list	*b;
+	int		len;
+	int		*clean_input;
 
-	i = 0;
-	while (s[i])
+	b = NULL;
+	a = NULL;
+	clean_input = NULL;
+	len = parse_input(argc, argv, &clean_input);
+	if (len == 0)
+		return (0);
+	if (len < 0)
 	{
-		(*f)(i, &s[i]);
-		i++;
+		write(2, "Error\n", 6);
+		return (-1);
 	}
+	create_stack(len, clean_input, &a);
+	push_swap(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
+	free(clean_input);
+	return (0);
 }

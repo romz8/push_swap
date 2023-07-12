@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 13:46:21 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/12 20:53:39 by rjobert          ###   ########.fr       */
+/*   Created: 2023/07/12 17:35:05 by rjobert           #+#    #+#             */
+/*   Updated: 2023/07/12 17:35:07 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static int	ft_wordcount(const char *s, char c)
 {

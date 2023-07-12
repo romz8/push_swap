@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:05:17 by rjobert           #+#    #+#             */
-/*   Updated: 2023/06/28 15:05:20 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/07/12 17:47:58 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
     1.c : if nothing is exectued : last node is already max
 2 - now that we are sure that last node is max, compare top and middle :
 if top node is bigger than mid node : swap */
-void    sort_3_ints(t_list **stack)
+void	sort_3_ints(t_list **stack)
 {
-    if (!*stack || !((*stack)->next) || stack_len(stack) > 3)
-        return ;
-    if((*stack)->data == find_stack_max(stack))
-        ra(stack);
-    else if ((*stack)->next->data == find_stack_max(stack))
-        rra(stack);
-    if ((*stack)->data > (*stack)->next->data)
-        sa(stack);
+	if (!*stack || !((*stack)->next) || stack_len(stack) > 3)
+		return ;
+	if ((*stack)->data == find_stack_max(stack))
+		ra(stack);
+	else if ((*stack)->next->data == find_stack_max(stack))
+		rra(stack);
+	if ((*stack)->data > (*stack)->next->data)
+		sa(stack);
 }
 
 /* the actual algorithm :
@@ -46,41 +46,42 @@ best fit
 stack_a (now on top)
 6 - we repeat until no more node on stack_b and then re-arrange
 */
-void    push_swap(t_list **stack_a, t_list **stack_b)
+void	push_swap(t_list **stack_a, t_list **stack_b)
 {
-    int stack_size;
+	int	stack_size;
 
-    if (!*stack_a || check_sort(stack_a) == 0)
-        return;
-    stack_size = stack_len(stack_a); 
-    smart_pb(stack_a, stack_b, stack_size);
-    while (stack_len(stack_a) > 3)
-        pb(stack_a, stack_b);
-    sort_3_ints(stack_a);
-    while(*stack_b)
-    {
-        evaluate_node(stack_a, stack_b);
-        rolling_engine(stack_a, stack_b);
-        pa(stack_a, stack_b);
-    }
-    if (check_sort(stack_a) != 0)
-        rearrange_stack(stack_a);
+	if (!*stack_a || check_sort(stack_a) == 0)
+		return ;
+	stack_size = stack_len(stack_a); 
+	smart_pb(stack_a, stack_b, stack_size);
+	while (stack_len(stack_a) > 3)
+		pb(stack_a, stack_b);
+	sort_3_ints(stack_a);
+	while (*stack_b)
+	{
+		evaluate_node(stack_a, stack_b);
+		rolling_engine(stack_a, stack_b);
+		pa(stack_a, stack_b);
+	}
+	if (check_sort(stack_a) != 0)
+		rearrange_stack(stack_a);
 }
 
 /* to check that the stack is sorted or not*/
-int check_sort(t_list **stack_head)
+int	check_sort(t_list **stack_head)
 {
-    t_list *stack;
-    stack = *stack_head;
-    if (!stack)
-        return (0);
-    while(stack && stack->next)
-    {
-        if (stack->data > stack->next->data)
-            return (1);
-        stack = stack->next;
-    }
-    return (0);
+	t_list	*stack;
+
+	stack = *stack_head;
+	if (!stack)
+		return (0);
+	while (stack && stack->next)
+	{
+		if (stack->data > stack->next->data)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
 }
 
 /* the push_swap algorithm works fine without this 
@@ -94,27 +95,27 @@ the stack_lenth : if is higher (index > mid_size) : we push it to
 stack_b, else we rotate. we keep doing until half the stack is pushed
 now we have a roughly pre-sorted stack with higher nber on stack_b, 
 smaller ones on stack_a */ 
-void    smart_pb(t_list **stack_a, t_list **stack_b, int stack_size)
+void	smart_pb(t_list **stack_a, t_list **stack_b, int stack_size)
 {
-    int push_count;
-    int i;
-    
-    if (!*stack_a || stack_size <= 3)
-        return ;
-    push_count = 0;
-    indexing_stack(stack_a);
-    i = 0;
-    while (i < stack_size  && push_count < stack_size / 2)
-    {
-        if ((*stack_a)->index > (stack_size / 2))
-        {
-            pb(stack_a, stack_b);
-            push_count++;
-        }
-        else 
-            ra(stack_a);
-        i++;
-    }
+	int	push_count;
+	int	i;
+
+	if (!*stack_a || stack_size <= 3)
+		return ;
+	push_count = 0;
+	indexing_stack(stack_a);
+	i = 0;
+	while (i < stack_size && push_count < stack_size / 2)
+	{
+		if ((*stack_a)->index > (stack_size / 2))
+		{
+			pb(stack_a, stack_b);
+			push_count++;
+		}
+		else
+			ra(stack_a);
+		i++;
+	}
 }
 
 /* to optimize the algorithm, we index the stack from 1 to n : 
@@ -142,28 +143,28 @@ create_tree_node and insert_tree node
 using a binary_search, we return the index*/
 void	indexing_stack(t_list **stack)
 {
-    t_tree *root;
-    t_list *head;
-    t_tree *binary_node;
-    int     index;
-     
-    if (!*stack)
-        return;
-    root = NULL;
-    head = *stack;
-    while(head)
-    {
-        binary_node = create_tree_node(head->data);
-        root = insert_tree(root, binary_node);
-        head = head->next;
-    }
-    index = 1;
-    tree_sort_index(root, &index);
-    head = *stack;
-    while(head)
-    {
-        head->index = binary_search(root, head->data);
-        head = head->next;
-    }
-    free_binary_tree(root);
+	t_tree	*root;
+	t_list	*head;
+	t_tree	*binary_node;
+	int		index;
+
+	if (!*stack)
+		return ;
+	root = NULL;
+	head = *stack;
+	while (head)
+	{
+		binary_node = create_tree_node(head->data);
+		root = insert_tree(root, binary_node);
+		head = head->next;
+	}
+	index = 1;
+	tree_sort_index(root, &index);
+	head = *stack;
+	while (head)
+	{
+		head->index = binary_search(root, head->data);
+		head = head->next;
+	}
+	free_binary_tree(root);
 }

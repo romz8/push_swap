@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:48:59 by rjobert           #+#    #+#             */
-/*   Updated: 2023/06/30 18:49:01 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/07/12 18:12:33 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,69 @@
 /*We iterate until reach the end of stack and :
 1 - give each node its position (starting on 0)
 2 - indicates if it's in upper_half (1) (over middle position) or not (0)*/
-void    rank_node_order(t_list **stack)
+void	rank_node_order(t_list **stack)
 {
-    t_list *head;
-    int     rank;
-    int     mid_point;
+	t_list	*head;
+	int		rank;
+	int		mid_point;
 
-    if (!*stack)
-        return;
-    head = *stack;
-    mid_point = stack_len(stack) / 2;
-    rank = 0;
-    while (head)
-    {
-        head->rank = rank;
-        if (rank > mid_point)
-            head->upper_half = 0;
-        else
-            head->upper_half = 1;
-        rank++;
-        head = head->next;
-    }
+	if (!*stack)
+		return ;
+	head = *stack;
+	mid_point = stack_len(stack) / 2;
+	rank = 0;
+	while (head)
+	{
+		head->rank = rank;
+		if (rank > mid_point)
+			head->upper_half = 0;
+		else
+			head->upper_half = 1;
+		rank++;
+		head = head->next;
+	}
 }
 
 /* This where we feed our node with all the relative information :
 1 - rank_node :position of each node
 2 - find_target : allocate to each node on b its target on stack_a
 3 - move_distance : how many moves are needed*/
-void    evaluate_node(t_list **stack_a, t_list **stack_b)
+void	evaluate_node(t_list **stack_a, t_list **stack_b)
 {
-    t_list *head_b;
+	t_list	*head_b;
 
-    if (!*stack_a || !*stack_b)
-        return;
-    head_b = *stack_b;
-    rank_node_order(stack_a);
-    rank_node_order(stack_b);
-    while(head_b)
-    {
-        head_b->target = find_target(stack_a, head_b->data);
-        head_b = head_b->next;
-    }
-    move_distance(stack_a, stack_b);
+	if (!*stack_a || !*stack_b)
+		return ;
+	head_b = *stack_b;
+	rank_node_order(stack_a);
+	rank_node_order(stack_b);
+	while (head_b)
+	{
+		head_b->target = find_target(stack_a, head_b->data);
+		head_b = head_b->next;
+	}
+	move_distance(stack_a, stack_b);
 }
 
 /*How far is a target node from the actual node on stack_b ?
 1 - find the target node for the given node
 2 - calculate how many moves are needed to reach it*/
-void    move_distance(t_list **stack_a, t_list **stack_b)
+void	move_distance(t_list **stack_a, t_list **stack_b)
 {
-    t_list  *head;
-    int     data[2];
-    int     move;
+	t_list	*head;
+	int		data[2];
+	int		move;
 
-    if (!*stack_a || !*stack_b)
-        return;
-    head = *stack_b;
-    while (head)
-    {
-        find_target_rank(stack_a, head->target, data);
-        move = calculate_nb_move(head, stack_a, stack_b, data);
-        head->move_count = move;
-        head = head->next;
-    }
+	if (!*stack_a || !*stack_b)
+		return ;
+	head = *stack_b;
+	while (head)
+	{
+		find_target_rank(stack_a, head->target, data);
+		move = calculate_nb_move(head, stack_a, stack_b, data);
+		head->move_count = move;
+		head = head->next;
+	}
 }
 
 /* Objective : calculate how many moves are needed to have the node 
@@ -97,44 +97,44 @@ it's odd : it's 0.5 * ((nb_rra) + (nb_rrb)) + 1 as you need one more rr
 2 - same logic but with ra / rb if they are both in upper half
 3 - if they are "in diagonal" -> add up, no move grouping for optimisation
 */
-int    calculate_nb_move(t_list *head, t_list **stack_a, t_list **stack_b, int *data)
+int	calculate_nb_move(t_list *head, t_list **a, t_list **b, int *data)
 {
-    int move;
+	int	move;
 
-    if (head->upper_half == 0)
-        move = (stack_len(stack_b)- head->rank);
-    else
-        move = head->rank;
-    if (data[1] == 1)
-        move += data[0];
-    else
-        move += stack_len(stack_a) - data[0];
-    return (move);
+	if (head->upper_half == 0)
+		move = (stack_len(b) - head->rank);
+	else
+		move = head->rank;
+	if (data[1] == 1)
+		move += data[0];
+	else
+		move += stack_len(a) - data[0];
+	return (move);
 }
 
 /*When using the rolling engine, we need to know what node will be moved to top 
 of stack b and what not is being target on stack a (and needs to be on top)
-this function allocate a pointer on this two nodes, the two nodes being passed as reference
-from rolling engin as NULL intialized
+this function allocate a pointer on this two nodes, the two nodes being passed 
+as reference from rolling engin as NULL intialized
 1 - it looks for move_node on b : the one node with the less movement needed
 2 - it looks for target_node on stack_b, using move_node->target */
-void    key_nodes(t_list **stack_a, t_list **stack_b, t_list **move_node, t_list **target_node)
+void	key_nodes(t_list **a, t_list **b, t_list **move_node, t_list **target)
 {
-    t_list *head;
+	t_list	*head;
 
-    head = *stack_b;
-    *move_node = head;
-    while (head)
-    {   
-        if (head->move_count < (*move_node)->move_count)
-            *move_node = head;
-        head = head->next;
-    }
-    head = *stack_a;
-    while (head)
-    {
-        if (head->data == (*move_node)->target)
-            *target_node = head;
-        head = head->next;
-    }
+	head = *b;
+	*move_node = head;
+	while (head)
+	{
+		if (head->move_count < (*move_node)->move_count)
+			*move_node = head;
+		head = head->next;
+	}
+	head = *a;
+	while (head)
+	{
+		if (head->data == (*move_node)->target)
+			*target = head;
+		head = head->next;
+	}
 }

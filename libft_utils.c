@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 17:54:13 by rjobert           #+#    #+#             */
-/*   Updated: 2023/05/23 14:06:31 by rjobert          ###   ########.fr       */
+/*   Created: 2023/07/12 17:26:32 by rjobert           #+#    #+#             */
+/*   Updated: 2023/07/12 17:57:19 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}
 
 int	ft_putstr(char *s)
 {
@@ -31,4 +39,21 @@ int	ft_putstr(char *s)
 	}
 	size = ft_strlen(s);
 	return (size);
+}
+
+int	ft_putchar(int x)
+{
+	if (write(1, &x, 1) == -1)
+		return (-1);
+	return (1);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
