@@ -147,7 +147,7 @@ void print_stacks_intel(t_list **a)
     {
         if (head_a)
         {
-            ft_printf("\n node value: %i, node rank : %i, node upper_half: %i, node target : %i, nb_count :%i\n", head_a->data, head_a->rank, head_a->upper_half, head_a->target, head_a->move_count);
+            ft_printf("\n node value: %i, node index : %i, node rank : %i, node upper_half: %i, node target : %i, nb_count :%i\n", head_a->data, head_a->index, head_a->rank, head_a->upper_half, head_a->target, head_a->move_count);
             head_a = head_a->next;
         }
         ft_printf("\n");

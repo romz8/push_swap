@@ -20,6 +20,16 @@
 
 # include "./libft_printf/ft_printf.h"
 # include "./libft_printf/libft/libft.h"
+
+/* struct explanation
+1 - data will be the number stored
+2 - target will be th enode on stack_a target by node on stack_b
+3 - rank is the position of the node in the stack (ascending) 
+4 - move_distance is how many moves a node needds to match its target
+5 - upper_half is to divide the sack in two part (to evaluate if 
+move_distance needs swap & rotate OR reverse rotate)
+6 - pointers to other nodes on the double linked list
+*/
 typedef struct s_stack {
     int     data;
     int     target;
@@ -31,15 +41,13 @@ typedef struct s_stack {
     struct s_stack *prev; 
 }   t_list;
 
-/* struct explanation
-1 - data will be the number stored
-2 - target will be th enode on stack_a target by node on stack_b
-3 - rank is the position of the node in the stack (ascending) 
-4 - move_distance is how many moves a node needds to match its target
-5 - upper_half is to divide the sack in two part (to evaluate if 
-move_distance needs swap & rotate OR reverse rotate)
-6 - pointers to other nodes on the double linked list
-*/
+
+typedef struct tree {
+    int data;
+    int index;
+    struct tree* left;
+    struct tree* right;
+}   t_tree;
 
 
 void    create_stack(int argc, int *argv, t_list **stack);
@@ -65,7 +73,6 @@ void    rra(t_list **a);
 void    rrb(t_list **b);
 void    rrr(t_list **a, t_list **b);
 void    sort_3_ints(t_list **stack);
-void    sort_5max_ints(t_list **stack_a, t_list **stack_b);
 int     stack_len(t_list **stack);
 int     find_stack_max(t_list **stack);
 int     find_stack_min(t_list **stack);
@@ -88,10 +95,15 @@ void    push_swap(t_list **stack_a, t_list **stack_b);
 void    parse_free(char **input);
 int     find_non_digit(char *str);
 int     check_sort(t_list **stack);
-void    smart_pb(t_list **stack_a, t_list **stack_b);
-void    indexing_stack(t_list **stack);
-void    sort_array(int *arr, int size);
-void    assign_index(t_list **stack, int *arr, int size);
+void    smart_pb(t_list **stack_a, t_list **stack_b, int stack_size);
+void	indexing_stack(t_list **stack);
+t_tree  *create_tree_node(int value);
+t_tree    *insert_tree(t_tree *root, t_tree *node);
+int     binary_search(t_tree *root, int value);
+void    tree_sort_index(t_tree *root, int *index);
+void    free_binary_tree(t_tree *root);
+
+
 
 
 void    print_stacks_intel(t_list **a);
