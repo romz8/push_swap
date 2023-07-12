@@ -101,24 +101,14 @@ int    calculate_nb_move(t_list *head, t_list **stack_a, t_list **stack_b, int *
 {
     int move;
 
-    if (head->upper_half == 0 && data[1] == 0)
-    {
-        if ((stack_len(stack_b)- head->rank) + (stack_len(stack_a) - data[0]) % 2 == 0)
-            move = ((stack_len(stack_b)- head->rank) + (stack_len(stack_a) - data[0])) / 2;
-        else
-            move = ((stack_len(stack_b)- head->rank) + (stack_len(stack_a) - data[0])) / 2 + 1;
-    }
-    else if (head->upper_half == 1 && data[1] == 1)
-    {
-        if ((head->rank + data[0]) % 2 == 0)
-            move = (head->rank + data[0]) / 2;
-        else 
-            move = (head->rank + data[0]) / 2 + 1;
-    }
-    else if (head->upper_half == 1 && data[1] == 0)
-        move = head->rank + (stack_len(stack_a) - data[0]);
+    if (head->upper_half == 0)
+        move = (stack_len(stack_b)- head->rank);
     else
-        move = (stack_len(stack_b) - head->rank) + data[0];
+        move = head->rank;
+    if (data[1] == 1)
+        move += data[0];
+    else
+        move += stack_len(stack_a) - data[0];
     return (move);
 }
 
