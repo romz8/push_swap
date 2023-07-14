@@ -38,21 +38,24 @@ void	rotate(t_list **stack)
 	*stack = save;
 }
 
-void	ra(t_list **a)
+void	ra(t_list **a, int n)
 {
 	rotate(a);
-	ft_putstr("ra\n");
+	if (n != 0)
+		ft_putstr("ra\n");
 }
 
-void	rb(t_list **b)
+void	rb(t_list **b, int n)
 {
 	rotate(b);
-	ft_putstr("rb\n");
+	if (n != 0)
+		ft_putstr("rb\n");
 }
 
-void	rr(t_list **a, t_list **b)
+void	rr(t_list **a, t_list **b, int n)
 {
 	rotate(a);
 	rotate(b);
-	ft_putstr("rr\n");
+	if (n != 0)
+		ft_putstr("rr\n");
 }

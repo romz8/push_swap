@@ -24,11 +24,11 @@ void	sort_3_ints(t_list **stack)
 	if (!*stack || !((*stack)->next) || stack_len(stack) > 3)
 		return ;
 	if ((*stack)->data == find_stack_max(stack))
-		ra(stack);
+		ra(stack, 1);
 	else if ((*stack)->next->data == find_stack_max(stack))
-		rra(stack);
+		rra(stack, 1);
 	if ((*stack)->data > (*stack)->next->data)
-		sa(stack);
+		sa(stack, 1);
 }
 
 /* the actual algorithm :
@@ -55,13 +55,13 @@ void	push_swap(t_list **stack_a, t_list **stack_b)
 	stack_size = stack_len(stack_a); 
 	smart_pb(stack_a, stack_b, stack_size);
 	while (stack_len(stack_a) > 3)
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, 1);
 	sort_3_ints(stack_a);
 	while (*stack_b)
 	{
 		evaluate_node(stack_a, stack_b);
 		rolling_engine(stack_a, stack_b);
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 1);
 	}
 	if (check_sort(stack_a) != 0)
 		rearrange_stack(stack_a);
@@ -109,11 +109,11 @@ void	smart_pb(t_list **stack_a, t_list **stack_b, int stack_size)
 	{
 		if ((*stack_a)->index > (stack_size / 2))
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 			push_count++;
 		}
 		else
-			ra(stack_a);
+			ra(stack_a, 1);
 		i++;
 	}
 }

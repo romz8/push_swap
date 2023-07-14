@@ -47,7 +47,7 @@ void	reorder_down(t_list **stack, t_list **node)
 	if (!stack || !node)
 		return ;
 	while (*stack != *node)
-		rra(stack);
+		rra(stack, 1);
 }
 
 void	reorder_up(t_list **stack, t_list **node)
@@ -55,5 +55,5 @@ void	reorder_up(t_list **stack, t_list **node)
 	if (!stack || !node)
 		return ;
 	while (*stack != *node)
-		ra(stack);
+		ra(stack, 1);
 }

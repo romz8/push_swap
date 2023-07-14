@@ -35,21 +35,24 @@ void	swap(t_list **stack)
 	*stack = second;
 }
 
-void	sa(t_list **a)
+void	sa(t_list **a, int n)
 {
 	swap(a);
-	ft_putstr("sa\n");
+	if (n != 0)
+		ft_putstr("sa\n");
 }
 
-void	sb(t_list **b)
+void	sb(t_list **b, int n)
 {
 	swap(b);
-	ft_putstr("sb\n");
+	if (n != 0)
+		ft_putstr("sb\n");
 }
 
-void	ss(t_list **a, t_list **b)
+void	ss(t_list **a, t_list **b, int n)
 {
 	swap(a);
 	swap(b);
-	ft_putstr("ss\n");
+	if (n != 0)
+		ft_putstr("ss\n");
 }

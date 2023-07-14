@@ -12,50 +12,32 @@
 
 #include "checker.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+/* You need to modify strjoin because it return null
+if any of the char is null -> */
+char	*gnl_strjoin(char *s1, char *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;
+	int		i;
+	int		j;
 	char	*concat;
 
-	if (!s1 || !s2)
-		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	concat = malloc(s1_len + s2_len + 1);
+	if (!s1)
+	{	
+		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
+	concat = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!concat)
 		return (NULL);
-	ft_memmove(concat, s1, s1_len);
-	ft_memmove(concat + s1_len, s2, s2_len);
-	concat[s1_len + s2_len] = '\0';
+	i = -1;
+	while (s1[++i])
+		concat[i] = s1[i];
+	j = -1;
+	while(s2[++j])
+		concat[i + j] = s2[j];
+	concat[i + j] = '\0';
 	return (concat);
-}
-
-void	*ft_memmove(void *dst, const void*src, size_t len)
-{
-	size_t			i;
-	unsigned char	*d;
-	unsigned char	*s;
-
-	if (!dst && !src)
-		return (NULL);
-	d = (unsigned char *) dst;
-	s = (unsigned char *) src;
-	if (s < d)
-	{
-		while (len--)
-			d[len] = s[len];
-	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
-	return (dst);
 }
 
 char	*ft_strrchr(const char *str, int c)
@@ -74,16 +56,6 @@ char	*ft_strrchr(const char *str, int c)
 	return (last_ptr);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 char *gnl_free(char **text)
 {
     if (*text)
@@ -91,17 +63,31 @@ char *gnl_free(char **text)
     return (NULL);
 }
 
-void    measure_n_create(char *text, char **line)
+void    measure_n_create(char **text, char **line)
 {
     int  i;
     
     i = 0;
-    while (text[i] && text[i] != '\n')
+    while ((*text)[i] && (*text)[i] != '\n')
         i++;
-    if (text[i] == '\n')
+    if ((*text)[i] == '\n')
         i++;
     *line = malloc ((i + 1) * sizeof(char));
     if (!*line)
-        return;
+		return ;
     (*line)[i] = '\0';
+}
+
+int	ft_strncmp(char *s1, char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+		i++;
+	}
+	return (0);
 }

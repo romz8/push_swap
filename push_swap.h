@@ -67,19 +67,19 @@ int		find_non_digit(char *str);
 
 /* ===== STACK MOVEMENT AS PER ASSIGNMENT========*/
 void	push(t_list **stack_a, t_list **stack_b);
-void	pa(t_list **stack_a, t_list **stack_b);
-void	pb(t_list **stack_b, t_list **stack_a);
+void	pa(t_list **stack_a, t_list **stack_b, int n);
+void	pb(t_list **stack_b, t_list **stack_a, int n);
 void	swap(t_list **stack);
 void	rotate(t_list **stack);
-void	ra(t_list **a);
-void	rb(t_list **b);
-void	rr(t_list **a, t_list **b);
-void	sa(t_list **a);
-void	sb(t_list **b);
-void	ss(t_list **a, t_list **b);
-void	rra(t_list **a);
-void	rrb(t_list **b);
-void	rrr(t_list **a, t_list **b);
+void	ra(t_list **a, int n);
+void	rb(t_list **b, int n);
+void	rr(t_list **a, t_list **b, int n);
+void	sa(t_list **a, int n);
+void	sb(t_list **b, int n);
+void	ss(t_list **a, t_list **b, int n);
+void	rra(t_list **a, int n);
+void	rrb(t_list **b, int n);
+void	rrr(t_list **a, t_list **b, int n);
 
 /*======= STACK UTILS FUNCTIONS =========*/
 void	create_stack(int argc, int *argv, t_list **stack);

@@ -56,11 +56,11 @@ void	rev_rotate_loop(t_list **a, t_list **b, t_list **trg, t_list **nde)
 	if (!*a || !*b)
 		return ;
 	while (*a != *trg && *b != *nde)
-		rrr(a, b);
+		rrr(a, b, 1);
 	while (*a != *trg)
-		rra(a);
+		rra(a, 1);
 	while (*b != *nde)
-		rrb(b);
+		rrb(b, 1);
 }
 
 /* objective : bring both nodes on top when both are in the upper half
@@ -74,11 +74,11 @@ void	rotate_loop(t_list **a, t_list **b, t_list **target, t_list **move_node)
 	if (!*a || !*b)
 		return ;
 	while (*a != *target && *b != *move_node)
-		rr(a, b);
+		rr(a, b, 1);
 	while (*a != *target)
-		ra(a);
+		ra(a, 1);
 	while (*b != *move_node)
-		rb(b);
+		rb(b, 1);
 }
 
 /* objective : bring both nodes on top when node_b in the upper & target 
@@ -90,9 +90,9 @@ void	diag_rotate_up(t_list **a, t_list **b, t_list **trgt, t_list **nde)
 	if (!*a || !*b)
 		return ;
 	while (*a != *trgt)
-		rra(a);
+		rra(a, 1);
 	while (*b != *nde)
-		rb(b);
+		rb(b, 1);
 }
 
 /*opposite case of diagonale down*/
@@ -101,7 +101,7 @@ void	diag_rotate_down(t_list **a, t_list **b, t_list **trgt, t_list **nde)
 	if (!*a || !*b)
 		return ;
 	while (*a != *trgt)
-		ra(a);
+		ra(a, 1);
 	while (*b != *nde)
-		rrb(b);
+		rrb(b, 1);
 }

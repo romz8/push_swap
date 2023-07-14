@@ -13,21 +13,25 @@
 
 #ifndef CHECKER_H
 # define CHECKER_H
-# include <stdlib.h>
-# include <unistd.h>
+# include "push_swap.h"
+# include <fcntl.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE = 42
+#  define BUFFER_SIZE 42
 # endif
 
 char    *gnl_checker(int fd);
 char    *get_line(char *text);
 void    add_buffer(int fd, char **text);
-void    measure_n_create(char *text, char **line);
+void    measure_n_create(char **text, char **line);
+char    *gnl_free(char **text);
 char    *update_static(char *text, int i, int j);
 char    *ft_strrchr(const char *str, int c);
-void	*ft_memmove(void *dst, const void*src, size_t len);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*gnl_strjoin(char *s1, char *s2);
+char    *load_input(void);
+int     run_push_swap(t_list **a, t_list **b, char *ops);
+int     run_rotations(t_list **a, t_list **b, char *ops);
+int     ft_strncmp(char *s1, char *s2, size_t n);
 
 #endif

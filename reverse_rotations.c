@@ -38,21 +38,25 @@ void	reverse_rotate(t_list **stack)
 	*stack = head;
 }
 
-void	rra(t_list **a)
+void	rra(t_list **a, int n)
 {
 	reverse_rotate(a);
-	ft_putstr("rra\n");
+	if (n != 0)
+		ft_putstr("rra\n");
+	
 }
 
-void	rrb(t_list **b)
+void	rrb(t_list **b, int n)
 {
 	reverse_rotate(b);
-	ft_putstr("rrb\n");
+	if (n != 0)
+		ft_putstr("rrb\n");
 }
 
-void	rrr(t_list **a, t_list **b)
+void	rrr(t_list **a, t_list **b, int n)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_putstr("rrr\n");
+	if (n != 0)
+		ft_putstr("rrr\n");
 }

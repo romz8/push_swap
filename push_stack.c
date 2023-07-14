@@ -43,14 +43,16 @@ void	push(t_list **target, t_list **source)
 	return ;
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_list **stack_a, t_list **stack_b, int n)
 {
 	push(stack_a, stack_b);
-	ft_putstr("pa\n");
+	if (n != 0)
+		ft_putstr("pa\n");
 }
 
-void	pb(t_list **stack_a, t_list **stack_b)
+void	pb(t_list **stack_a, t_list **stack_b, int n)
 {
 	push(stack_b, stack_a);
-	ft_putstr("pb\n");
+	if (n != 0)
+		ft_putstr("pb\n");
 }
