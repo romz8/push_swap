@@ -33,11 +33,11 @@ t_tree	*create_tree_node(int value)
 else right subtree. example :
 stack : 4   8   5   2   1   3  
 tree :
-        8
-      /
-    5 
-   /
-4       2
+
+    8
+  /   \ 	
+4       5
+        2
   \   /
     3
      \ 1

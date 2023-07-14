@@ -11,26 +11,31 @@
 # **************************************************************************** #
 
 CC = CC
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -MMD -I/.
 HEADER = push_swap.h
-SRC = $(wildcard *.c)
+SRC = sort_algorithm.c binary_tree.c data_structure.c final_rearrange.c ft_atoi_custom.c \
+	ft_split.c libft_utils.c node_mapping.c parse_input.c push_stack.c \
+	reverse_rotations.c rolling_algorithm.c rotations.c stack_utils.c swaps.c main.c
+
 OBJS = $(SRC:.c=.o)
+DEPS = $(SRC:.c=.d)
 NAME = push_swap
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
+-include $(DEPS)
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(^) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
+re: fclean all 
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re 
