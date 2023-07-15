@@ -29,7 +29,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	}
 	concat = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!concat)
-		return (NULL);
+		return (gnl_free(&s1));
 	i = -1;
 	while (s1[++i])
 		concat[i] = s1[i];
@@ -37,6 +37,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	while(s2[++j])
 		concat[i + j] = s2[j];
 	concat[i + j] = '\0';
+	gnl_free(&s1);
 	return (concat);
 }
 
@@ -60,6 +61,7 @@ char *gnl_free(char **text)
 {
     if (*text)
         free(*text);
+	*text = NULL;
     return (NULL);
 }
 
@@ -67,15 +69,14 @@ void    measure_n_create(char **text, char **line)
 {
     int  i;
     
-    i = 0;
+    if (!*text)
+		return;
+	i = 0;
     while ((*text)[i] && (*text)[i] != '\n')
         i++;
     if ((*text)[i] == '\n')
         i++;
     *line = malloc ((i + 1) * sizeof(char));
-    if (!*line)
-		return ;
-    (*line)[i] = '\0';
 }
 
 int	ft_strncmp(char *s1, char *s2, size_t n)

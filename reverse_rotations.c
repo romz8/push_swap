@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:59:47 by rjobert           #+#    #+#             */
-/*   Updated: 2023/07/11 21:05:17 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/07/15 16:25:09 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	rra(t_list **a, int n)
 	reverse_rotate(a);
 	if (n != 0)
 		ft_putstr("rra\n");
-	
 }
 
 void	rrb(t_list **b, int n)

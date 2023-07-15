@@ -30,7 +30,8 @@ char    *update_static(char *text, int i, int j);
 char    *ft_strrchr(const char *str, int c);
 char	*gnl_strjoin(char *s1, char *s2);
 char    *load_input(void);
-int     run_push_swap(t_list **a, t_list **b, char *ops);
+int     run_input(t_list **a, t_list **b, char *ops);
+int     run_moves(t_list **a, t_list **b, char *ops);
 int     run_rotations(t_list **a, t_list **b, char *ops);
 int     ft_strncmp(char *s1, char *s2, size_t n);
 

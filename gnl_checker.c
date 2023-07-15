@@ -20,11 +20,10 @@ char    *gnl_checker(int fd)
     line = NULL;
     if (fd < 0 || read(fd, &line, 0) < 0 || BUFFER_SIZE <= 0)
         return (gnl_free(&text));
-    if (!text || (text && !ft_strrchr(text, '\n'))) //if first read or read and not \n
+    if (!text || (text && !ft_strrchr(text, '\n')))
         add_buffer(fd, &text); 
     if (!text)
-        return (NULL); //reached EOF or read issue
-    
+        return (NULL); 
     line = get_line(text);
     if (!line)
         return(gnl_free(&text));
@@ -51,7 +50,6 @@ void    add_buffer(int fd, char **text)
     }
     if (byte_read < 0)
         gnl_free(text);
-    //printf("\n\n TEXT IN ADD_BUFFER_JOIN IS : %s \n\n", *text);
 }
 
 char    *get_line(char *text)
