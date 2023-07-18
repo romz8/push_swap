@@ -6,7 +6,7 @@
 /*   By: rjobert <rjobert@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:15:01 by rjobert           #+#    #+#             */
-/*   Updated: 2023/07/14 14:15:02 by rjobert          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:28:29 by rjobert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	char	*concat;
 
 	if (!s1)
-	{	
+	{
 		s1 = malloc(1);
 		if (!s1)
 			return (NULL);
@@ -34,7 +34,7 @@ char	*gnl_strjoin(char *s1, char *s2)
 	while (s1[++i])
 		concat[i] = s1[i];
 	j = -1;
-	while(s2[++j])
+	while (s2[++j])
 		concat[i + j] = s2[j];
 	concat[i + j] = '\0';
 	gnl_free(&s1);
@@ -57,26 +57,30 @@ char	*ft_strrchr(const char *str, int c)
 	return (last_ptr);
 }
 
-char *gnl_free(char **text)
+char	*gnl_free(char **text)
 {
-    if (*text)
-        free(*text);
+	if (*text)
+		free(*text);
 	*text = NULL;
-    return (NULL);
+	return (NULL);
 }
 
-void    measure_n_create(char **text, char **line)
+void	measure_n_create(char **text, char **line, int *n)
 {
-    int  i;
-    
-    if (!*text)
-		return;
+	int	i;
+
+	if (!*text)
+		return ;
 	i = 0;
-    while ((*text)[i] && (*text)[i] != '\n')
-        i++;
-    if ((*text)[i] == '\n')
-        i++;
-    *line = malloc ((i + 1) * sizeof(char));
+	while ((*text)[i] && (*text)[i] != '\n')
+		i++;
+	if ((*text)[i] == '\n')
+		i++;
+	*line = malloc ((i + 1) * sizeof(char));
+	if (!*line)
+		return ;
+	(*line)[i] = '\0';
+	*n = i;
 }
 
 int	ft_strncmp(char *s1, char *s2, size_t n)
